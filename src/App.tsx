@@ -1,17 +1,25 @@
 import React from 'react';
 import { observer } from 'mobx-react-lite';
 
-import { AppState } from './AppState';
+import { AppPage, AppState } from './AppState';
 
-import './app.scss';
 import { Navbar } from '@blueprintjs/core';
 import { Button } from '@blueprintjs/core/lib/esm/components';
+import { MealPage } from './meal-page/MealPage';
 
 interface AppProps {
   appState: AppState;
 }
 
 export const App: React.FC<AppProps> = observer(({ appState }) => {
+  // Which page are we on
+  let page: JSX.Element;
+  switch (appState.page) {
+    case AppPage.MEALS:
+      page = <MealPage appState={appState} />;
+      break;
+  }
+
   return (
     <>
       <Navbar>
@@ -24,6 +32,8 @@ export const App: React.FC<AppProps> = observer(({ appState }) => {
           <Button minimal>Settings</Button>
         </Navbar.Group>
       </Navbar>
+
+      {page}
     </>
   );
 });
