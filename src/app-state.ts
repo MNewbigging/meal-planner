@@ -26,6 +26,10 @@ export class AppState {
     this.loadMeals();
   }
 
+  @action changePage(page: AppPage) {
+    this.page = page;
+  }
+
   @action openCreateMealDialog = () => {
     this.creatingMeal = new Meal();
     this.createMealDialogOpen = true;

@@ -8,6 +8,7 @@ import { Navbar } from '@blueprintjs/core';
 import { Button } from '@blueprintjs/core/lib/esm/components';
 import { MealPage } from './meal-page/meal-page';
 import { MealView } from './meal-view/meal-view';
+import { TagsPage } from './tags-page/tags-page';
 
 interface AppProps {
   appState: AppState;
@@ -20,6 +21,9 @@ export const App: React.FC<AppProps> = observer(({ appState }) => {
     case AppPage.MEALS:
       page = <MealPage appState={appState} />;
       break;
+    case AppPage.TAGS:
+      page = <TagsPage appState={appState} />;
+      break;
   }
 
   return (
@@ -29,9 +33,15 @@ export const App: React.FC<AppProps> = observer(({ appState }) => {
           <Navbar.Group>
             <Navbar.Heading>Meal Planner</Navbar.Heading>
             <Navbar.Divider />
-            <Button minimal>Meals</Button>
-            <Button minimal>Tags</Button>
-            <Button minimal>Settings</Button>
+            <Button minimal onClick={() => appState.changePage(AppPage.MEALS)}>
+              Meals
+            </Button>
+            <Button minimal onClick={() => appState.changePage(AppPage.TAGS)}>
+              Tags
+            </Button>
+            <Button minimal onClick={() => appState.changePage(AppPage.SETTINGS)}>
+              Settings
+            </Button>
           </Navbar.Group>
         </Navbar>
       </div>
