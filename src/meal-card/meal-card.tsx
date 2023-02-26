@@ -1,6 +1,6 @@
 import './meal-card.scss';
 import React from 'react';
-import { Meal } from '../meal-model';
+import { Meal } from '../meal';
 import { observer } from 'mobx-react-lite';
 import { Card } from '@blueprintjs/core';
 

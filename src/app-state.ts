@@ -1,5 +1,5 @@
 import { makeAutoObservable, observable } from 'mobx';
-import { Meal } from './meal-model';
+import { Meal } from './meal';
 import { createId } from './utils/createId';
 
 export enum AppPage {
@@ -10,31 +10,42 @@ export enum AppPage {
 
 export class AppState {
   @observable page = AppPage.MEALS;
-  @observable createMealOpen = true;
+
+  // For creat meal dialog
+  @observable createMealDialogOpen = false;
   @observable creatingMeal?: Meal;
 
   meals: Meal[] = [];
 
   constructor() {
     makeAutoObservable(this);
-
-    this.loadMeals();
   }
 
   openCreateMealDialog = () => {
-    this.createMealOpen = true;
+    this.creatingMeal = new Meal();
+    this.createMealDialogOpen = true;
   };
 
-  closeCreateMealDialog = () => {
-    this.createMealOpen = false;
+  confirmCreateMeal = () => {
+    if (this.creatingMeal) {
+      this.meals.push(this.creatingMeal);
+    }
+
+    this.createMealDialogOpen = false;
+    this.creatingMeal = undefined;
+  };
+
+  cancelCreateMeal = () => {
+    this.createMealDialogOpen = false;
+    this.creatingMeal = undefined;
   };
 
   private loadMeals() {
     // Make some dummy meals
     for (let i = 0; i < 250; i++) {
-      this.meals.push({
-        name: createId(),
-      });
+      const meal = new Meal();
+      meal.name = createId();
+      this.meals.push(meal);
     }
   }
 }

@@ -11,22 +11,23 @@ interface MealEditProps {
 
 export const MealCreateDialog: React.FC<MealEditProps> = observer(({ appState }) => {
   return (
-    <Dialog
-      isOpen={appState.createMealOpen}
-      onClose={appState.closeCreateMealDialog}
-      canOutsideClickClose
-      title='Add Meal'
-    >
+    <Dialog isOpen={appState.createMealDialogOpen} title='Add Meal' isCloseButtonShown={false}>
       <DialogBody>
-        <div className='meal-edit-body'>
-          <InputGroup placeholder='Meal name' />
-        </div>
+        {appState.creatingMeal && (
+          <div className='meal-edit-body'>
+            <InputGroup
+              placeholder='Meal name'
+              value={appState.creatingMeal.name}
+              onChange={(event) => (appState.creatingMeal.name = event.target.value)}
+            />
+          </div>
+        )}
       </DialogBody>
 
       <DialogFooter>
         <div className='meal-edit-footer'>
-          <Button minimal text='Cancel' />
-          <Button intent={Intent.PRIMARY} text='Add' />
+          <Button minimal text='Cancel' onClick={appState.cancelCreateMeal} />
+          <Button intent={Intent.PRIMARY} text='Add' onClick={appState.confirmCreateMeal} />
         </div>
       </DialogFooter>
     </Dialog>
