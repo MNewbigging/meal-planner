@@ -1,6 +1,6 @@
 import { action, makeAutoObservable, observable } from 'mobx';
 import { Meal } from './meal';
-import { Tag } from './tag';
+import { MealTag } from './meal-tag';
 import { createId } from './utils/createId';
 
 export enum AppPage {
@@ -22,7 +22,9 @@ export class AppState {
   private meals: Meal[] = [];
 
   // Tags props
-  tags: Tag[] = [];
+  tags: MealTag[] = [];
+  @observable createTagDialogOpen = false;
+  @observable creatingTag?: MealTag;
 
   constructor() {
     makeAutoObservable(this);
@@ -66,6 +68,25 @@ export class AppState {
 
     this.visibleMeals = this.meals.filter((meal) => meal.name.toLowerCase().includes(toLower));
   }
+
+  @action openCreateTagDialog = () => {
+    this.creatingTag = new MealTag();
+    this.createTagDialogOpen = true;
+  };
+
+  @action confirmCreateTag = () => {
+    if (this.creatingTag) {
+      this.tags.push(this.creatingTag);
+    }
+
+    this.createTagDialogOpen = false;
+    this.creatingTag = undefined;
+  };
+
+  @action cancelCreateTag = () => {
+    this.createTagDialogOpen = false;
+    this.creatingTag = undefined;
+  };
 
   private loadMeals() {
     // Make some dummy meals
