@@ -11,5 +11,9 @@ interface MealCardProps {
 export const MealCard: React.FC<MealCardProps> = observer(({ meal }) => {
   const { name } = meal;
 
-  return <Card className='meal-card'>{name}</Card>;
+  return (
+    <Card interactive className='meal-card'>
+      {name}
+    </Card>
+  );
 });

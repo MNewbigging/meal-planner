@@ -1,6 +1,6 @@
 import './meal-page.scss';
 import React from 'react';
-import { Button, InputGroup, NonIdealState } from '@blueprintjs/core';
+import { Button, InputGroup, Intent, NonIdealState } from '@blueprintjs/core';
 import { AppState } from '../app-state';
 import { observer } from 'mobx-react-lite';
 import { MealCard } from '../meal-card/meal-card';
@@ -18,7 +18,12 @@ export const MealPage: React.FC<MealPageProps> = observer(({ appState }) => {
       <MealCreateDialog appState={appState} />
 
       <div className='action-area'>
-        <Button icon='add' text='Add meal' onClick={appState.openCreateMealDialog} />
+        <Button
+          icon='add'
+          text='Add meal'
+          intent={Intent.PRIMARY}
+          onClick={appState.openCreateMealDialog}
+        />
         <InputGroup
           className='search-input'
           placeholder='Search meals...'
@@ -30,9 +35,17 @@ export const MealPage: React.FC<MealPageProps> = observer(({ appState }) => {
         <NonIdealState
           icon='clean'
           description='No meals here, why not make one now!'
-          action={<Button icon='add' text='Add meal' onClick={appState.openCreateMealDialog} />}
+          action={
+            <Button
+              icon='add'
+              text='Add meal'
+              intent={Intent.PRIMARY}
+              onClick={appState.openCreateMealDialog}
+            />
+          }
         />
       )}
+
       <div className='meal-list'>
         {appState.visibleMeals.map((meal: Meal, index: number) => (
           <MealCard key={`meal-card-${index}`} meal={meal} />

@@ -1,5 +1,6 @@
 import { action, makeAutoObservable, observable } from 'mobx';
 import { Meal } from './meal';
+import { Tag } from './tag';
 import { createId } from './utils/createId';
 
 export enum AppPage {
@@ -9,7 +10,7 @@ export enum AppPage {
 }
 
 export class AppState {
-  @observable page = AppPage.MEALS;
+  @observable page = AppPage.TAGS;
 
   // For create meal dialog
   @observable createMealDialogOpen = false;
@@ -19,6 +20,9 @@ export class AppState {
   @observable mealSearchQuery = '';
   visibleMeals: Meal[] = [];
   private meals: Meal[] = [];
+
+  // Tags props
+  tags: Tag[] = [];
 
   constructor() {
     makeAutoObservable(this);
