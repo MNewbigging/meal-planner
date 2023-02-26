@@ -1,4 +1,4 @@
-import { makeAutoObservable, observable } from 'mobx';
+import { action, makeAutoObservable, observable } from 'mobx';
 import { Meal } from './meal';
 import { createId } from './utils/createId';
 
@@ -11,7 +11,7 @@ export enum AppPage {
 export class AppState {
   @observable page = AppPage.MEALS;
 
-  // For creat meal dialog
+  // For create meal dialog
   @observable createMealDialogOpen = false;
   @observable creatingMeal?: Meal;
 
@@ -21,12 +21,12 @@ export class AppState {
     makeAutoObservable(this);
   }
 
-  openCreateMealDialog = () => {
+  @action openCreateMealDialog = () => {
     this.creatingMeal = new Meal();
     this.createMealDialogOpen = true;
   };
 
-  confirmCreateMeal = () => {
+  @action confirmCreateMeal = () => {
     if (this.creatingMeal) {
       this.meals.push(this.creatingMeal);
     }
@@ -35,7 +35,7 @@ export class AppState {
     this.creatingMeal = undefined;
   };
 
-  cancelCreateMeal = () => {
+  @action cancelCreateMeal = () => {
     this.createMealDialogOpen = false;
     this.creatingMeal = undefined;
   };
