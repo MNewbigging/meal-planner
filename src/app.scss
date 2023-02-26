@@ -1,0 +1,22 @@
+.app {
+  width: 100%;
+  height: 100%;
+}
+
+.panels-area {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+
+  .left-panel {
+    flex: 1 1 100%;
+    height: 100%;
+  }
+
+  .right-panel {
+    flex: 1 1 auto;
+    height: 100%;
+    border-left: 1px solid black;
+  }
+}
