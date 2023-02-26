@@ -4,7 +4,7 @@ import { Button, InputGroup } from '@blueprintjs/core';
 import { AppState } from '../app-state';
 import { observer } from 'mobx-react-lite';
 import { MealCard } from '../meal-card/meal-card';
-import { MealEdit } from '../meal-edit/meal-edit';
+import { MealCreateDialog } from '../meal-create-dialog/meal-create-dialog';
 import { Meal } from '../meal-model';
 
 interface MealPageProps {
@@ -15,10 +15,10 @@ export const MealPage: React.FC<MealPageProps> = observer(({ appState }) => {
   return (
     <div className='meal-page'>
       {/* Dialogs */}
-      <MealEdit appState={appState} />
+      <MealCreateDialog appState={appState} />
 
       <div className='action-area'>
-        <Button icon='add' text='Add meal' onClick={appState.addMeal} />
+        <Button icon='add' text='Add meal' onClick={appState.openCreateMealDialog} />
         <InputGroup className='search-input' placeholder='Search meals...' />
       </div>
 

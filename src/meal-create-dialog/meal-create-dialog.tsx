@@ -1,6 +1,6 @@
-import './meal-edit.scss';
+import './meal-create-dialog.scss';
 import React from 'react';
-import { Dialog, DialogBody, DialogFooter, Intent } from '@blueprintjs/core';
+import { Dialog, DialogBody, DialogFooter, Intent, InputGroup } from '@blueprintjs/core';
 import { AppState } from '../app-state';
 import { observer } from 'mobx-react-lite';
 import { Button } from '@blueprintjs/core';
@@ -9,16 +9,18 @@ interface MealEditProps {
   appState: AppState;
 }
 
-export const MealEdit: React.FC<MealEditProps> = observer(({ appState }) => {
+export const MealCreateDialog: React.FC<MealEditProps> = observer(({ appState }) => {
   return (
     <Dialog
-      isOpen={appState.mealEditOpen}
-      onClose={appState.cancelMealEdit}
+      isOpen={appState.createMealOpen}
+      onClose={appState.closeCreateMealDialog}
       canOutsideClickClose
       title='Add Meal'
     >
       <DialogBody>
-        <div className='meal-edit-body'></div>
+        <div className='meal-edit-body'>
+          <InputGroup placeholder='Meal name' />
+        </div>
       </DialogBody>
 
       <DialogFooter>
