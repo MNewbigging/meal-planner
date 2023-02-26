@@ -15,6 +15,7 @@ export class AppState {
   @observable createMealDialogOpen = false;
   @observable creatingMeal?: Meal;
 
+  // For meal page search
   @observable mealSearchQuery = '';
   visibleMeals: Meal[] = [];
   private meals: Meal[] = [];
@@ -33,6 +34,7 @@ export class AppState {
   @action confirmCreateMeal = () => {
     if (this.creatingMeal) {
       this.meals.push(this.creatingMeal);
+      this.searchMeals(this.mealSearchQuery);
     }
 
     this.createMealDialogOpen = false;
@@ -44,7 +46,9 @@ export class AppState {
     this.creatingMeal = undefined;
   };
 
-  searchMeals(query: string) {
+  @action searchMeals(query: string) {
+    this.mealSearchQuery = query;
+
     if (!query) {
       this.visibleMeals = [...this.meals];
       return;
