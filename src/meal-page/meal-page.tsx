@@ -19,18 +19,22 @@ export const MealPage: React.FC<MealPageProps> = observer(({ appState }) => {
 
       <div className='action-area'>
         <Button icon='add' text='Add meal' onClick={appState.openCreateMealDialog} />
-        <InputGroup className='search-input' placeholder='Search meals...' />
+        <InputGroup
+          className='search-input'
+          placeholder='Search meals...'
+          onChange={(event) => appState.searchMeals(event.target.value)}
+        />
       </div>
 
-      {!appState.meals.length && (
+      {!appState.visibleMeals.length && (
         <NonIdealState
           icon='clean'
-          description='You have no meals, why not make one now!'
+          description='No meals here, why not make one now!'
           action={<Button icon='add' text='Add meal' onClick={appState.openCreateMealDialog} />}
         />
       )}
       <div className='meal-list'>
-        {appState.meals.map((meal: Meal, index: number) => (
+        {appState.visibleMeals.map((meal: Meal, index: number) => (
           <MealCard key={`meal-card-${index}`} meal={meal} />
         ))}
       </div>

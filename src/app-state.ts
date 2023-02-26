@@ -15,10 +15,14 @@ export class AppState {
   @observable createMealDialogOpen = false;
   @observable creatingMeal?: Meal;
 
-  meals: Meal[] = [];
+  @observable mealSearchQuery = '';
+  visibleMeals: Meal[] = [];
+  private meals: Meal[] = [];
 
   constructor() {
     makeAutoObservable(this);
+
+    this.loadMeals();
   }
 
   @action openCreateMealDialog = () => {
@@ -40,6 +44,17 @@ export class AppState {
     this.creatingMeal = undefined;
   };
 
+  searchMeals(query: string) {
+    if (!query) {
+      this.visibleMeals = [...this.meals];
+      return;
+    }
+
+    const toLower = query.toLowerCase();
+
+    this.visibleMeals = this.meals.filter((meal) => meal.name.toLowerCase().includes(toLower));
+  }
+
   private loadMeals() {
     // Make some dummy meals
     for (let i = 0; i < 250; i++) {
@@ -47,5 +62,7 @@ export class AppState {
       meal.name = createId();
       this.meals.push(meal);
     }
+
+    this.visibleMeals = [...this.meals];
   }
 }
