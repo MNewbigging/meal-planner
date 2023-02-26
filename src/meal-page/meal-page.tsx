@@ -1,9 +1,9 @@
 import './meal-page.scss';
 import React from 'react';
 import { InputGroup } from '@blueprintjs/core';
-import { AppState } from '../AppState';
+import { AppState } from '../app-state';
 import { observer } from 'mobx-react-lite';
-import { MealCard } from '../meal-card/MealCard';
+import { MealCard } from '../meal-card/meal-card';
 
 interface MealPageProps {
   appState: AppState;

@@ -2,11 +2,11 @@ import './app.scss';
 import React from 'react';
 import { observer } from 'mobx-react-lite';
 
-import { AppPage, AppState } from './AppState';
+import { AppPage, AppState } from './app-state';
 
 import { Navbar } from '@blueprintjs/core';
 import { Button } from '@blueprintjs/core/lib/esm/components';
-import { MealPage } from './meal-page/MealPage';
+import { MealPage } from './meal-page/meal-page';
 import { MealView } from './meal-view/meal-view';
 
 interface AppProps {
