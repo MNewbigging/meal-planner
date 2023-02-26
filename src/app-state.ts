@@ -10,6 +10,8 @@ export enum AppPage {
 
 export class AppState {
   @observable page = AppPage.MEALS;
+  @observable mealEditOpen = true;
+  @observable mealToEdit?: Meal;
 
   meals: Meal[] = [];
 
@@ -18,6 +20,14 @@ export class AppState {
 
     this.loadMeals();
   }
+
+  addMeal = () => {
+    this.mealEditOpen = true;
+  };
+
+  cancelMealEdit = () => {
+    this.mealEditOpen = false;
+  };
 
   private loadMeals() {
     // Make some dummy meals

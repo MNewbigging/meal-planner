@@ -1,9 +1,11 @@
 import './meal-page.scss';
 import React from 'react';
-import { InputGroup } from '@blueprintjs/core';
+import { Button, InputGroup } from '@blueprintjs/core';
 import { AppState } from '../app-state';
 import { observer } from 'mobx-react-lite';
 import { MealCard } from '../meal-card/meal-card';
+import { MealEdit } from '../meal-edit/meal-edit';
+import { Meal } from '../meal-model';
 
 interface MealPageProps {
   appState: AppState;
@@ -12,12 +14,17 @@ interface MealPageProps {
 export const MealPage: React.FC<MealPageProps> = observer(({ appState }) => {
   return (
     <div className='meal-page'>
-      <div className='search-area'>
+      {/* Dialogs */}
+      <MealEdit appState={appState} />
+
+      <div className='action-area'>
+        <Button icon='add' text='Add meal' onClick={appState.addMeal} />
         <InputGroup className='search-input' placeholder='Search meals...' />
       </div>
+
       <div className='meal-list'>
-        {appState.meals.map((meal) => (
-          <MealCard meal={meal} />
+        {appState.meals.map((meal: Meal, index: number) => (
+          <MealCard key={`meal-card-${index}`} meal={meal} />
         ))}
       </div>
     </div>

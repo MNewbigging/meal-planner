@@ -7,12 +7,13 @@
   flex-direction: column;
   gap: 20px;
 
-  .search-area {
+  .action-area {
     display: flex;
     justify-content: center;
+    gap: 10px;
 
     .search-input {
-      width: 50%;
+      width: 250px;
     }
   }
 
