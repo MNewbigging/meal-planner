@@ -1,3 +1,4 @@
+import { Intent } from '@blueprintjs/core';
 import { action, makeAutoObservable, observable } from 'mobx';
 import { Meal } from './meal';
 import { MealTag } from './meal-tag';
@@ -19,6 +20,7 @@ export class AppState {
   // Meal view dialog
   @observable viewMealDialogOpen = false;
   mealToView?: Meal;
+  @observable deleteSliderValue = 0;
 
   // For meal page search
   @observable mealSearchQuery = '';
@@ -102,6 +104,25 @@ export class AppState {
     this.mealToView = undefined;
     this.viewMealDialogOpen = false;
   };
+
+  getDeleteSliderIntent(): Intent {
+    if (this.deleteSliderValue > 70) {
+      return Intent.DANGER;
+    }
+    if (this.deleteSliderValue > 35) {
+      return Intent.WARNING;
+    }
+
+    return Intent.SUCCESS;
+  }
+
+  @action setDeleteSliderValue = (value: number) => {
+    this.deleteSliderValue = value;
+  };
+
+  @action deleteMeal(id: string) {
+    this.meals = this.meals.filter((meal) => meal.id !== id);
+  }
 
   private loadMeals() {
     // Make some dummy meals

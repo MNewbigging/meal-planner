@@ -1,0 +1,8 @@
+- delete meal popover doesn't work, clicking outside also closes 
+the view meal dialog. What about a novel means of deleting? It needs
+an 'are you sure' element, which usually means clicking twice.
+I could:
+- slider, drag to right to delete
+- button press counter; press 2/3 times to really delete it
+
+- can I put 'clickOutsideClose' on the meal/tag create dialogs
