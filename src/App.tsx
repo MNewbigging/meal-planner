@@ -48,7 +48,9 @@ export const App: React.FC<AppProps> = observer(({ appState }) => {
 
       <div className='panels-area'>
         <div className='left-panel'>{page}</div>
-        <div className='right-panel'></div>
+        <div className='right-panel'>
+          <Button icon='properties' minimal />
+        </div>
       </div>
     </div>
   );

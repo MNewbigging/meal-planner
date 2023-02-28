@@ -46,11 +46,13 @@ export const MealPage: React.FC<MealPageProps> = observer(({ appState }) => {
         />
       )}
 
-      <div className='meal-list'>
-        {appState.visibleMeals.map((meal: Meal, index: number) => (
-          <MealCard key={`meal-card-${index}`} meal={meal} />
-        ))}
-      </div>
+      {appState.visibleMeals.length > 0 && (
+        <div className='meal-list'>
+          {appState.visibleMeals.map((meal: Meal, index: number) => (
+            <MealCard key={`meal-card-${index}`} meal={meal} />
+          ))}
+        </div>
+      )}
     </div>
   );
 });

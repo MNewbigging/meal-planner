@@ -11,6 +11,10 @@
     display: flex;
     justify-content: center;
     gap: 10px;
+
+    .search-input {
+      width: 250px;
+    }
   }
 
   .tags-list {
