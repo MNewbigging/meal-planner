@@ -1,0 +1,14 @@
+.meal-view-dialog-body {
+  .action-bar {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+.meal-view-dialog-footer {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}

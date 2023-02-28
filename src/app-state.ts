@@ -10,11 +10,15 @@ export enum AppPage {
 }
 
 export class AppState {
-  @observable page = AppPage.TAGS;
+  @observable page = AppPage.MEALS;
 
   // For create meal dialog
   @observable createMealDialogOpen = false;
   @observable creatingMeal?: Meal;
+
+  // Meal view dialog
+  @observable viewMealDialogOpen = false;
+  mealToView?: Meal;
 
   // For meal page search
   @observable mealSearchQuery = '';
@@ -87,6 +91,16 @@ export class AppState {
   @action cancelCreateTag = () => {
     this.createTagDialogOpen = false;
     this.creatingTag = undefined;
+  };
+
+  @action openViewMealDialog(mealToView: Meal) {
+    this.mealToView = mealToView;
+    this.viewMealDialogOpen = true;
+  }
+
+  @action closeViewMealDialog = () => {
+    this.mealToView = undefined;
+    this.viewMealDialogOpen = false;
   };
 
   private loadMeals() {

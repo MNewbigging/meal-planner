@@ -6,13 +6,14 @@ import { Card } from '@blueprintjs/core';
 
 interface MealCardProps {
   meal: Meal;
+  onClick: () => void;
 }
 
-export const MealCard: React.FC<MealCardProps> = observer(({ meal }) => {
+export const MealCard: React.FC<MealCardProps> = observer(({ meal, onClick }) => {
   const { name } = meal;
 
   return (
-    <Card interactive className='meal-card'>
+    <Card interactive className='meal-card' onClick={onClick}>
       {name}
     </Card>
   );

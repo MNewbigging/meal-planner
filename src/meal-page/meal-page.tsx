@@ -6,6 +6,7 @@ import { observer } from 'mobx-react-lite';
 import { MealCard } from '../meal-card/meal-card';
 import { MealCreateDialog } from '../meal-create-dialog/meal-create-dialog';
 import { Meal } from '../meal';
+import { MealViewDialog } from '../meal-view-dialog/meal-view-dialog';
 
 interface MealPageProps {
   appState: AppState;
@@ -16,6 +17,7 @@ export const MealPage: React.FC<MealPageProps> = observer(({ appState }) => {
     <div className='meal-page'>
       {/* Dialogs */}
       <MealCreateDialog appState={appState} />
+      <MealViewDialog appState={appState} />
 
       <div className='action-area'>
         <Button
@@ -49,7 +51,11 @@ export const MealPage: React.FC<MealPageProps> = observer(({ appState }) => {
       {appState.visibleMeals.length > 0 && (
         <div className='meal-list'>
           {appState.visibleMeals.map((meal: Meal, index: number) => (
-            <MealCard key={`meal-card-${index}`} meal={meal} />
+            <MealCard
+              key={`meal-card-${index}`}
+              meal={meal}
+              onClick={() => appState.openViewMealDialog(meal)}
+            />
           ))}
         </div>
       )}

@@ -29,7 +29,14 @@ export const TagsPage: React.FC<TagsPageProps> = observer(({ appState }) => {
         <NonIdealState
           icon='clean'
           description='No tags here, why not make one now!'
-          action={<Button icon='add' text='Add tag' intent={Intent.PRIMARY} />}
+          action={
+            <Button
+              icon='add'
+              text='Add tag'
+              intent={Intent.PRIMARY}
+              onClick={appState.openCreateTagDialog}
+            />
+          }
         />
       )}
 

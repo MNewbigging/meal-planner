@@ -7,7 +7,6 @@ import { AppPage, AppState } from './app-state';
 import { Navbar } from '@blueprintjs/core';
 import { Button } from '@blueprintjs/core/lib/esm/components';
 import { MealPage } from './meal-page/meal-page';
-import { MealView } from './meal-view/meal-view';
 import { TagsPage } from './tags-page/tags-page';
 
 interface AppProps {
@@ -49,7 +48,7 @@ export const App: React.FC<AppProps> = observer(({ appState }) => {
       <div className='panels-area'>
         <div className='left-panel'>{page}</div>
         <div className='right-panel'>
-          <Button icon='properties' minimal />
+          <Button icon='list' minimal />
         </div>
       </div>
     </div>
