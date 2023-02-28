@@ -3,7 +3,7 @@ import { createId } from './utils/createId';
 
 export class MealTag {
   id: string;
-  @observable color = '';
+  @observable color = '#000000';
   @observable name = '';
 
   constructor(id?: string) {
@@ -14,5 +14,9 @@ export class MealTag {
 
   @action setName(name: string) {
     this.name = name;
+  }
+
+  @action setColor(color: string) {
+    this.color = color;
   }
 }

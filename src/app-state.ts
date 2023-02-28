@@ -77,6 +77,7 @@ export class AppState {
   @action confirmCreateTag = () => {
     if (this.creatingTag) {
       this.tags.push(this.creatingTag);
+      console.log('created tag', this.creatingTag);
     }
 
     this.createTagDialogOpen = false;

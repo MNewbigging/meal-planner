@@ -19,6 +19,15 @@ export const TagCreateDialog: React.FC<TagCreateProps> = observer(({ appState })
               value={appState.creatingTag.name}
               onChange={(event) => appState.creatingTag.setName(event.target.value)}
             />
+
+            <div className='color-picker'>
+              <span>Colour:</span>
+              <input
+                type='color'
+                value={appState.creatingTag.color}
+                onChange={(event) => appState.creatingTag.setColor(event.target.value)}
+              />
+            </div>
           </div>
         )}
       </DialogBody>

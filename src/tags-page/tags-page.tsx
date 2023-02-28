@@ -35,7 +35,7 @@ export const TagsPage: React.FC<TagsPageProps> = observer(({ appState }) => {
 
       <div className='tags-list'>
         {appState.tags.map((tag: MealTag) => (
-          <Tag key={tag.id} color={tag.color}>
+          <Tag key={tag.id} style={{ backgroundColor: `${tag.color}` }}>
             {tag.name}
           </Tag>
         ))}
