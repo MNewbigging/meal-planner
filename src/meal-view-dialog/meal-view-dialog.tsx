@@ -49,6 +49,7 @@ export const MealViewDialog: React.FC<MealViewDialogProps> = observer(({ appStat
               labelRenderer={false}
               value={appState.deleteSliderValue}
               onChange={appState.setDeleteSliderValue}
+              onRelease={(value: number) => appState.onReleaseDeleteSlider(value, meal.id)}
             />
             <Icon icon='trash' />
           </div>

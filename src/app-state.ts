@@ -120,8 +120,17 @@ export class AppState {
     this.deleteSliderValue = value;
   };
 
+  @action onReleaseDeleteSlider(value: number, mealId: string) {
+    if (value === 100) {
+      this.deleteMeal(mealId);
+      this.closeViewMealDialog();
+      this.deleteSliderValue = 0;
+    }
+  }
+
   @action deleteMeal(id: string) {
     this.meals = this.meals.filter((meal) => meal.id !== id);
+    this.searchMeals(this.mealSearchQuery);
   }
 
   private loadMeals() {
